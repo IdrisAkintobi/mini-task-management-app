@@ -12,7 +12,7 @@ test("renders TaskList and handles actions", () => {
   const handleDelete = jest.fn();
   const handleToggleComplete = jest.fn();
 
-  const { getByText } = render(
+  const { getAllByText } = render(
     <TaskList
       tasks={tasks}
       onEdit={handleEdit}
@@ -21,15 +21,19 @@ test("renders TaskList and handles actions", () => {
     />
   );
 
-  fireEvent.click(getByText(/edit/i, { selector: "button" }));
-  expect(handleEdit).toHaveBeenCalledWith(tasks[0]);
-
-  fireEvent.click(getByText(/delete/i, { selector: "button" }));
+  const deleteButtons = getAllByText(/Delete/i, { selector: "button" });
+  fireEvent.click(deleteButtons[0]);
   expect(handleDelete).toHaveBeenCalledWith(tasks[0].id);
 
-  fireEvent.click(getByText(/complete/i, { selector: "button" }));
-  expect(handleToggleComplete).toHaveBeenCalledWith(tasks[0].id);
+  const editButtons = getAllByText(/Edit/i, { selector: "button" });
+  fireEvent.click(editButtons[0]);
+  expect(handleEdit).toHaveBeenCalledWith(tasks[0]);
 
-  fireEvent.click(getByText(/unmark/i, { selector: "button" }));
+  const unmarkButtons = getAllByText(/Unmark/i, { selector: "button" });
+  fireEvent.click(unmarkButtons[0]);
   expect(handleToggleComplete).toHaveBeenCalledWith(tasks[1].id);
+
+  const completeButtons = getAllByText(/Complete/i, { selector: "button" });
+  fireEvent.click(completeButtons[0]);
+  expect(handleToggleComplete).toHaveBeenCalledWith(tasks[0].id);
 });
