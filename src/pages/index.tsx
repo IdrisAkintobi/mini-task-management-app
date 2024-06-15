@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "../../app/globals.css";
 import TaskForm from "../components/TaskForm";
 import TaskList from "../components/TaskList";
 import useTasks from "../hooks/useTasks";

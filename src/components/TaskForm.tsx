@@ -28,25 +28,26 @@ const TaskForm: React.FC<TaskFormProps> = ({ task, onSave }) => {
   }, [task]);
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4">
+    <form onSubmit={handleSubmit} className="max-w-sm space-y-4">
       <input
         type="text"
         value={title}
         onChange={(e) => setTitle(e.target.value)}
         placeholder="Task Title"
         required
-        className="w-full p-2 border rounded"
+        className="w-full p-2 pl-10 text-sm text-gray-700 border border-gray-300 rounded"
       />
       <input
         type="date"
         value={dueDate}
         onChange={(e) => setDueDate(e.target.value)}
+        placeholder="Due Date"
         required
-        className="w-full p-2 border rounded"
+        className="w-full p-2 pl-10 text-sm text-gray-700 border border-gray-300 rounded"
       />
       <button
         type="submit"
-        className="px-4 py-2 bg-blue-500 text-white rounded"
+        className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700"
       >
         Save Task
       </button>

@@ -14,7 +14,7 @@ const TaskList: React.FC<TaskListProps> = ({
   onToggleComplete,
 }) => {
   return (
-    <ul className="space-y-4">
+    <ul className="space-y-4 mt-12">
       {tasks.map((task) => (
         <li
           key={task.id}
@@ -26,20 +26,22 @@ const TaskList: React.FC<TaskListProps> = ({
           <div className="space-x-2">
             <button
               onClick={() => onEdit(task)}
-              className="px-4 py-2 bg-yellow-500 text-white rounded"
+              className="px-4 py-2 bg-yellow-500 text-white rounded hover:bg-yellow-700"
             >
               Edit
             </button>
             <button
               onClick={() => onDelete(task.id)}
-              className="px-4 py-2 bg-red-500 text-white rounded"
+              className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-700"
             >
               Delete
             </button>
             <button
               onClick={() => onToggleComplete(task.id)}
               className={`px-4 py-2 text-white rounded ${
-                task.completed ? "bg-gray-500" : "bg-green-500"
+                task.completed
+                  ? "bg-gray-500 hover:bg-gray-700"
+                  : "bg-green-500 hover:bg-green-700"
               }`}
             >
               {task.completed ? "Unmark" : "Complete"}
