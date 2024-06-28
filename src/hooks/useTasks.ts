@@ -1,3 +1,4 @@
+"use client";
 import { useEffect, useState } from "react";
 import { Task } from "../models/Task";
 
@@ -5,18 +6,14 @@ const useTasks = () => {
   const [tasks, setTasks] = useState<Task[]>([]);
 
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      const savedTasks = localStorage.getItem("tasks");
-      if (savedTasks) {
-        setTasks(JSON.parse(savedTasks));
-      }
+    const savedTasks = localStorage.getItem("tasks");
+    if (savedTasks) {
+      setTasks(JSON.parse(savedTasks));
     }
   }, []);
 
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      localStorage.setItem("tasks", JSON.stringify(tasks));
-    }
+    localStorage.setItem("tasks", JSON.stringify(tasks));
   }, [tasks]);
 
   const addTask = (task: Task) => setTasks([...tasks, task]);
